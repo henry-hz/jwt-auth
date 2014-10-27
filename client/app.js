@@ -4,7 +4,7 @@
     $httpProvider.interceptors.push('AuthInterceptor');
   });
 
-  app.constant('API_URL', 'http://localhost:3000');
+  app.constant('API_URL', 'http://localhost:8000');
 
   app.controller('MainCtrl', function MainCtrl(RandomUserFactory, UserFactory) {
     'use strict';
@@ -61,8 +61,8 @@
 
     function login(username, password) {
       return $http.post(API_URL + '/login', {
-        username: username,
-        password: password
+        "user": username,
+        "pass": password
       }).then(function success(response) {
         AuthTokenFactory.setToken(response.data.token);
         return response;
